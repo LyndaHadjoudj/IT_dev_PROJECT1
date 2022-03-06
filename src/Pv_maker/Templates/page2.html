@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content%}
+        <div class="first-ele">
+            <img class="ScroolImg" src="/static/Images/ImageScroll.jpg">
+            <img class="image2" src="/static/Images/ImagPage2.png">
+            <div class="input-phase">
+                <h2 class="titl2">entrez les informations du PV</h2>
+                <form method="POST" id="ReunionF">
+                    {% csrf_token %}
+                    {{form}}
+                
+                    <button id="hideEverythingBtn" type="button" class="btnC">Continuer</button>
+                    <script>
+                        
+                        var order=0,
+                        inputs = document.getElementsByClassName("input"),
+                        hideEverythingBtn=document.getElementById("hideEverythingBtn"),
+                        ReunionF= document.getElementById("ReunionF");
+                        
+                        function hideEverything(e){
+                            console.log(e)
+                            e.preventDefault();
+                            for(var i of inputs) i.classList.add("HideInput");
+                            order++;
+                            if(order<3){
+                                let inputsToShow = document.getElementsByClassName("input"+order)
+                                for(var i of inputsToShow) i.classList.remove("HideInput");
+                            }else {
+                                ReunionF.submit()
+                            }
+                            return false;
+                        }
+                        hideEverythingBtn.addEventListener("click",hideEverything )
+                    </script>
+            </form>
+            </div>
+        </div>
+    </div>
+    
+</body>
+{% endblock content %} 
+

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf8">
+    <title>meeting's PV</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/website_Style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+</head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://unpkg.com/tailwindcss@0.3.0/dist/tailwind.min.css" rel="stylesheet">
+
+    <div class="total2">
+		
+        <div>
+            {% comment %} <div class="icon1-2" onclick="toggleNav()"></div> {% endcomment %}
+            <div class="nav-Links5" id="navLinks5">
+                {% comment %} <div class="icon"></div> {% endcomment %}
+                <ul class="elements">
+                     {% comment %} <img class="icon-1" src="Images/icons8-home-24.png"> {% endcomment %}
+
+                    <li><a href="{% url 'webone' %}">Home</a></li>
+                    <br>
+                    <br><br>
+                        <li><a href ="{% url 'Insc-etp1' %}">crrer un nouveau pv</a></li>
+                        <br>
+                        <br><br>
+                            <li><a href="{% url 'TabPv' %}">listes des pvs </a></li>
+                </ul>
+				<br><br><br>
+				<div class='sear'>
+                <form>
+				{% comment %} <label for="site-search" class='titSer'></label> {% endcomment %}
+				<button class='btnSerach' type='submit'>Search<img class='searchicon' src="/static/Images/search.png" ></button>
+				<input type="search" class="site-search" name="q"
+					   aria-label="Search through site content" placeholder='Tapez ici'>
+				
+				  <br><br><br>
+                </form>
+				</div>
+                <img class='imagMen' src="/static/Images/icons8-crowd-96.png">
+                 
+            </div>
+        </div>
+<div class = tableau5>
+<div class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;">
+<div class="container">
+	<h1 class="title5">
+    Liste Des PVS sauvegardés
+  </h1>
+	<table class="text-left w-full">
+		<thead class="bg-black flex text-white w-full">
+			<tr class="flex w-full mb-4">
+				<th class="p-4 w-1/4">identificateur_réunion</th>
+				<th class="p-4 w-1/4">Date_réunion</th>
+				<th class="p-4 w-1/4">Heure_réunion</th>
+				<th class="p-4 w-1/4">But_réunion</th>
+			</tr>
+		</thead>
+    <!-- Remove the nasty inline CSS fixed height on production and replace it with a CSS class — this is just for demonstration purposes! -->
+		<tbody class="bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full" style="height: 50vh;">
+			{% for item in reuns%}
+      <tr class="flex w-full mb-4">
+				<td class="p-4 w-1/4">{{item.id}}</td>
+				<td class="p-4 w-1/4">{{item.DateR}}</td>
+				<td class="p-4 w-1/4">{{item.HeureR}}</td>
+				<td class="p-4 w-1/4">{{item.ButR}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+ </div>
+ </div>
+ </div>
+</div>
+</div>
+</div>
+
+ <!------ JavaScript for Toggle Menu---- -->
+ <script>
+    let toggleNavStatus = false;//ie que le truc est ouvert
+    let toggleNav = function () {
+        let getSidebar = document.querySelector(".nav-Links")
+        let getManuBar = document.querySelector(".icon")
+        let getManuBar2 = document.querySelector(".icon1-2")
+
+        if (toggleNavStatus === false) {
+            getSidebar.style.visibility = "visible";
+            getManuBar.style.visibility = "collapse";
+            getManuBar2.style.display = "none";
+        }
+        toggleNavStatus = true;
+    }
+    let closeNav = function () {
+        let getSidebar = document.querySelector(".nav-Links")
+        let getManuBar = document.querySelector(".icon")
+        let getManuBar2 = document.querySelector(".icon1-2")
+        if (toggleNavStatus === true) {
+            getSidebar.style.visibility = "hidden";
+            getManuBar2.style.display = "block";
+        }
+        toggleNavStatus = false;
+    }
+
+
+
+</script>
+    </html>
+{% comment %} {% endblock content %}  {% endcomment %}

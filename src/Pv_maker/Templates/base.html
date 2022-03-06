@@ -1,0 +1,73 @@
+{% comment %} Ce fichier contient tous les elements qui ne changent pas ie les elements fixes de notre site web {% endcomment %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf8">
+    <title>meeting's PV</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/website_Style.css' %}">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="total2">
+        <div>
+            <div class="icon1-2" onclick="toggleNav()"></div>
+            <div class="nav-Links" id="navLinks">
+                <div class="icon"></div>
+                <ul class="elements">
+                     {% comment %} <img class="icon-1" src="Images/icons8-home-24.png"> {% endcomment %}
+
+                    <li><a href="{% url 'webone' %}">Home</a></li>
+                    <br>
+                    <br><br>
+                        <li><a href ="{% url 'Insc-etp1' %}">crrer un nouveau pv</a></li>
+                        <br>
+                        <br><br>
+                            <li><a href="{% url 'TabPv' %}">listes des pvs </a></li>
+                </ul>
+               
+                <img class='imagMen' src="/static/Images/icons8-crowd-96.png">
+                 <button class="btn" onclick="closeNav()">Fermer</button>
+            </div>
+        </div>
+        {% block content%}
+        {% endblock content %} 
+    </body>
+    <!------ JavaScript for Toggle Menu---- -->
+<script>
+    let toggleNavStatus = false;//ie que le truc est ouvert
+    let toggleNav = function () {
+        let getSidebar = document.querySelector(".nav-Links")
+        let getManuBar = document.querySelector(".icon")
+        let getManuBar2 = document.querySelector(".icon1-2")
+
+        if (toggleNavStatus === false) {
+            getSidebar.style.visibility = "visible";
+            getManuBar.style.visibility = "collapse";
+            getManuBar2.style.display = "none";
+        }
+        toggleNavStatus = true;
+    }
+    let closeNav = function () {
+        let getSidebar = document.querySelector(".nav-Links")
+        let getManuBar = document.querySelector(".icon")
+        let getManuBar2 = document.querySelector(".icon1-2")
+        if (toggleNavStatus === true) {
+            getSidebar.style.visibility = "hidden";
+            getManuBar2.style.display = "block";
+        }
+        toggleNavStatus = false;
+    }
+
+
+
+</script>
+    </html>
